@@ -15,6 +15,9 @@ import { getTopicProgress, updateProfile, addPracticeSession, addQuizResult } fr
 import type { Explanation, PracticeProblem, Quiz, QuizQuestion } from '@/lib/tutor/types';
 import { LessonSteps } from '@/components/interactive/LessonSteps';
 import { getLessonSteps } from '@/lib/tutor/lesson-content';
+import { ChatPanel } from '@/components/chat/ChatPanel';
+import { ChatSettings } from '@/components/chat/ChatSettings';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 export default function LearnPage({ params }: { params: Promise<{ topicId: string }> }) {
   const resolvedParams = use(params);
@@ -46,6 +49,7 @@ export default function LearnPage({ params }: { params: Promise<{ topicId: strin
   const [quizScore, setQuizScore] = useState(0);
   
   const [topicProgress, setTopicProgress] = useState(getTopicProgress(topicId));
+  const [showChatSettings, setShowChatSettings] = useState(false);
 
   useEffect(() => {
     // Update current topic in profile
@@ -579,6 +583,22 @@ export default function LearnPage({ params }: { params: Promise<{ topicId: strin
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* Chat Panel */}
+      <ChatPanel 
+        currentTopicId={topicId} 
+        onOpenSettings={() => setShowChatSettings(true)}
+      />
+
+      {/* Chat Settings Dialog */}
+      <Dialog open={showChatSettings} onOpenChange={setShowChatSettings}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Chat Settings & Cost Controls</DialogTitle>
+          </DialogHeader>
+          <ChatSettings onClose={() => setShowChatSettings(false)} />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

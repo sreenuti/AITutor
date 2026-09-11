@@ -94,7 +94,36 @@ This makes the app fully functional for evaluation and testing without API costs
 - **Sample Worksheets**: Try pre-loaded examples without uploading
 - **Smart Analysis**: Extracts topic, problems, and concepts (demo or real AI)
 
-### 3. Learning Pages (Explain, Practice, Quiz)
+### 3. AI Tutor Chat (Token-Stingy Architecture)
+
+**Ask questions anytime** with text or voice - designed to keep costs near $0:
+
+- **💬 Chat Panel**: Side panel with text input + microphone button
+- **🎤 FREE Speech Input**: Web Speech API (Chrome/Chromebook native)
+- **🔊 FREE Speech Output**: Browser TTS (optional, toggleable)
+- **Local-First AI**: Most questions answered FREE from knowledge base
+- **Smart Caching**: Previous answers served from localStorage (FREE)
+- **Tiny Context**: Only 150-250 tokens per AI call when needed
+- **Budget Controls**: Daily limits (default: 20 AI questions/day)
+- **Kill Switch**: Pause AI chat entirely (local-only mode)
+- **Usage Meter**: Live display of remaining questions
+- **Cost Model**: ~$0.002/AI question, but most answers are FREE
+
+**How it works:**
+1. Local KB checks 50+ common geometry questions (FREE)
+2. Cache checks previous answers (FREE)
+3. Budget check before any API call
+4. If allowed, tiny context + strict token limits (~200 tokens)
+5. Cache the response for future FREE reuse
+
+**Parent Controls:**
+- Set daily request limits (5-100, default 20)
+- Set token budgets (1k-20k, default 5k)
+- Pause AI chat (local answers only)
+- View today's usage and estimated monthly cost
+- Reset usage if needed
+
+### 4. Learning Pages (Explain, Practice, Quiz)
 
 #### Explain Tab - Interactive Step-by-Step Lessons
 The Explain mode has been redesigned as an **interactive, engaging learning experience** based on parent feedback:
@@ -131,7 +160,7 @@ The Explain mode has been redesigned as an **interactive, engaging learning expe
 - Detailed review showing correct answers and explanations
 - Updates mastery level based on performance
 
-### 4. Progress Dashboard
+### 5. Progress Dashboard
 
 - **Overview**: Overall score, topics mastered, quizzes taken
 - **Catch-Up Progress**: Specific tracking for weeks 1-3 topics
@@ -140,7 +169,7 @@ The Explain mode has been redesigned as an **interactive, engaging learning expe
 - **Activity History**: Recent quizzes with dates and scores
 - **Recommendations**: Personalized suggestions based on performance
 
-### 5. Curriculum Map
+### 6. Curriculum Map
 
 - Complete 8th-grade geometry curriculum (8 topics across 4 weeks)
 - Topics organized by week with difficulty levels
@@ -269,7 +298,25 @@ The app is a standard Next.js application and can deploy to:
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `OPENAI_API_KEY` | No | OpenAI API key for real worksheet analysis. If not set, app uses demo mode. |
+| `OPENAI_API_KEY` | No | OpenAI API key for worksheet analysis AND AI chat fallback. If not set, app uses demo mode with local answers only. |
+
+**Cost Model (with API key):**
+- **Worksheet Analysis**: ~$0.01-0.02 per image (GPT-4o Vision)
+- **Chat (AI fallback)**: ~$0.002 per question (gpt-4o-mini, 200 tokens max)
+- **Chat (local KB)**: $0 (50+ canned answers, no API)
+- **Chat (cached)**: $0 (localStorage responses)
+- **Speech (voice input/output)**: $0 (browser Web Speech API)
+
+**Typical Monthly Cost:**
+- Student uploads 5 worksheets/month: ~$0.10
+- Student asks 10 AI chat questions/day (most FREE from local KB): ~$0.60
+- **Total: < $1/month for active use**
+
+**Without API key (Demo Mode):**
+- Everything works!
+- Worksheet analysis uses demo data
+- Chat uses local knowledge base only
+- **Total cost: $0**
 
 ## Browser Support
 
@@ -406,6 +453,41 @@ Built with:
 - [Tailwind CSS](https://tailwindcss.com/)
 - [shadcn/ui](https://ui.shadcn.com/)
 - [Lucide Icons](https://lucide.dev/)
+
+---
+
+## Chat Cost Controls (For Parents)
+
+The AI chat is designed to be **aggressively token-stingy** with multiple layers of cost protection:
+
+### Free-First Architecture
+1. **Local Knowledge Base** (50+ Q&A) - instant, $0
+2. **Response Cache** (localStorage) - instant, $0
+3. **Browser Speech APIs** - all voice features, $0
+4. **AI Fallback** (OpenAI) - only when needed, ~$0.002/question
+
+### Hard Limits
+- Max 200 tokens per AI response (short answers)
+- Max 500 characters per question (reject oversized)
+- Only last 2 chat turns sent (tiny context)
+- Temperature 0.3 (factual, consistent)
+- Daily budget enforced (default 20 AI calls/day)
+
+### Parent Settings
+Access via ⚙️ icon in chat panel:
+- Set daily request limits (5-100)
+- Set token budgets (1k-20k)
+- Pause AI chat (local-only mode)
+- View real-time usage
+- Reset counts if needed
+
+### No Surprise Bills
+- Budget exceeded = friendly message + local answers only
+- No API key = full demo mode, $0 cost
+- Estimated monthly cost shown in settings
+- All paid calls logged (console.log for audit)
+
+**Recommendation:** Start with defaults (20 questions/day) and adjust based on actual usage. Most students use 5-15 AI questions per day because local answers handle common questions.
 
 ---
 
