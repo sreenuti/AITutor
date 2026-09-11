@@ -46,6 +46,33 @@ export function AnimatedExplainer({ topicId }: AnimatedExplainerProps) {
         { duration: 2000, description: 'Obtuse: more than 90°' },
       ],
     },
+    'points-lines-planes': {
+      title: 'Building Blocks of Geometry',
+      steps: [
+        { duration: 2000, description: 'Points are exact locations' },
+        { duration: 2000, description: 'Lines connect points and extend forever' },
+        { duration: 2000, description: 'Segments are parts of lines with endpoints' },
+        { duration: 2000, description: 'Rays start at one point and go forever' },
+      ],
+    },
+    'congruence': {
+      title: 'Understanding Congruence',
+      steps: [
+        { duration: 2000, description: 'Congruent means same size and shape' },
+        { duration: 2000, description: 'Translation: slide the shape' },
+        { duration: 2000, description: 'Rotation: turn the shape' },
+        { duration: 2000, description: 'Reflection: flip the shape' },
+      ],
+    },
+    'perimeter-area': {
+      title: 'Perimeter and Area',
+      steps: [
+        { duration: 2000, description: 'Perimeter is the distance around' },
+        { duration: 2000, description: 'Area is the space inside' },
+        { duration: 2000, description: 'Different shapes, different formulas' },
+        { duration: 2000, description: 'Practice makes perfect!' },
+      ],
+    },
   };
 
   const animation = animations[topicId] || animations['angles'];

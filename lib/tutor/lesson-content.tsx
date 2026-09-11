@@ -7,6 +7,9 @@ import { ParallelLinesVisual } from '@/components/interactive/ParallelLinesVisua
 import { TriangleAngleVisual } from '@/components/interactive/TriangleAngleVisual';
 import { AngleTypesVisual } from '@/components/interactive/AngleTypesVisual';
 import { AnimatedExplainer } from '@/components/interactive/AnimatedExplainer';
+import { PointsLinesVisual } from '@/components/interactive/PointsLinesVisual';
+import { CongruenceVisual } from '@/components/interactive/CongruenceVisual';
+import { PerimeterAreaVisual } from '@/components/interactive/PerimeterAreaVisual';
 
 interface LessonStep {
   id: string;
@@ -25,6 +28,219 @@ interface LessonStep {
 
 export function getLessonSteps(topicId: string): LessonStep[] {
   const lessons: Record<string, LessonStep[]> = {
+    'points-lines-planes': [
+      {
+        id: 'intro-1',
+        type: 'intro',
+        title: 'Welcome to Geometry Foundations!',
+        content:
+          "Everything in geometry starts with points, lines, and planes. These are the building blocks we'll use to understand all geometric shapes and concepts. Let's explore what makes each one special!",
+      },
+      {
+        id: 'watch-1',
+        type: 'watch',
+        title: 'Watch: The Building Blocks',
+        content:
+          'Let\'s see a quick overview of points, lines, line segments, and rays. Each one is different and has its own special notation!',
+        component: <AnimatedExplainer topicId="points-lines-planes" />,
+      },
+      {
+        id: 'interact-1',
+        type: 'interact',
+        title: 'Try It: Explore Each Type',
+        content:
+          'Click the buttons to see points, lines, line segments, and rays. Notice how each one is drawn differently and uses different notation. A point is just a dot, a line extends forever in both directions (arrows on both ends), a segment has two endpoints, and a ray starts at one point and extends forever in one direction.',
+        component: <PointsLinesVisual />,
+      },
+      {
+        id: 'check-1',
+        type: 'check',
+        title: 'Quick Check: Lines vs Segments',
+        content: 'Let\'s check your understanding!',
+        question: {
+          text: 'What is the difference between a line and a line segment?',
+          type: 'multiple-choice',
+          options: [
+            'A line has endpoints, a segment does not',
+            'A segment has endpoints, a line extends forever',
+            'They are the same thing',
+            'A line is shorter than a segment',
+          ],
+          correctAnswer: 'A segment has endpoints, a line extends forever',
+          explanation:
+            'Perfect! A line segment is part of a line between two endpoints, while a line extends infinitely in both directions with no endpoints.',
+        },
+      },
+      {
+        id: 'check-2',
+        type: 'check',
+        title: 'Quick Check: Rays',
+        content: 'One more!',
+        question: {
+          text: 'A ray has one endpoint and extends infinitely in one direction.',
+          type: 'true-false',
+          correctAnswer: 'true',
+          explanation:
+            'Exactly right! A ray starts at one specific point (the endpoint) and then extends forever in one direction. Think of it like a laser beam!',
+        },
+      },
+      {
+        id: 'summary-1',
+        type: 'summary',
+        title: 'Geometry Foundations Mastered! 🎉',
+        content:
+          'Great work! You now understand the basic building blocks of geometry: points (exact locations), lines (extend forever both ways), segments (parts of lines with two endpoints), and rays (start at one point, extend forever in one direction). These are the foundation for everything else in geometry!',
+      },
+    ],
+
+    'congruence': [
+      {
+        id: 'intro-1',
+        type: 'intro',
+        title: 'Welcome to Congruence!',
+        content:
+          'Two shapes are congruent when they have exactly the same size and shape. They might be in different positions or orientations, but they\'re identical! In this lesson, you\'ll learn about the transformations that create congruent figures.',
+      },
+      {
+        id: 'watch-1',
+        type: 'watch',
+        title: 'Watch: What is Congruence?',
+        content:
+          'Let\'s see how shapes can be moved in different ways while staying congruent. Translation, rotation, and reflection are called "rigid transformations" because they preserve the size and shape.',
+        component: <AnimatedExplainer topicId="congruence" />,
+      },
+      {
+        id: 'interact-1',
+        type: 'interact',
+        title: 'Try It: Rigid Transformations',
+        content:
+          'Click each transformation button to see how the blue triangle (△ABC) can be moved to create a congruent green triangle (△DEF). Notice that no matter which transformation you choose, the triangles remain exactly the same size and shape!',
+        component: <CongruenceVisual />,
+      },
+      {
+        id: 'check-1',
+        type: 'check',
+        title: 'Quick Check: Congruent Shapes',
+        content: 'Let\'s test your understanding!',
+        question: {
+          text: 'If two triangles are congruent, they must have:',
+          type: 'multiple-choice',
+          options: [
+            'The same angles only',
+            'The same side lengths only',
+            'Both the same angles and the same side lengths',
+            'The same position and orientation',
+          ],
+          correctAnswer: 'Both the same angles and the same side lengths',
+          explanation:
+            'Perfect! Congruent triangles have both the same angles AND the same side lengths. They\'re identical in size and shape, even if they\'re positioned differently.',
+        },
+      },
+      {
+        id: 'interact-2',
+        type: 'interact',
+        title: 'Explore: Corresponding Parts',
+        content:
+          'Click "Show Corresponding Parts" to see how vertices match up between congruent triangles. Point A corresponds to point D, B to E, and C to F. This is important when proving triangles are congruent!',
+        component: <CongruenceVisual />,
+      },
+      {
+        id: 'check-2',
+        type: 'check',
+        title: 'Quick Check: Rigid Transformations',
+        content: 'Final check!',
+        question: {
+          text: 'Which of these is NOT a rigid transformation?',
+          type: 'multiple-choice',
+          options: [
+            'Translation (sliding)',
+            'Rotation (turning)',
+            'Reflection (flipping)',
+            'Stretching (making bigger)',
+          ],
+          correctAnswer: 'Stretching (making bigger)',
+          explanation:
+            'Correct! Stretching changes the size of a shape, so it\'s not a rigid transformation. Only translations, rotations, and reflections preserve both size and shape.',
+        },
+      },
+      {
+        id: 'summary-1',
+        type: 'summary',
+        title: 'Congruence Expert! 🎉',
+        content:
+          'Excellent work! You understand that congruent shapes have the same size and shape, and that rigid transformations (translations, rotations, and reflections) create congruent figures. These concepts are essential for proving geometric relationships!',
+      },
+    ],
+
+    'perimeter-area': [
+      {
+        id: 'intro-1',
+        type: 'intro',
+        title: 'Welcome to Perimeter and Area!',
+        content:
+          'Perimeter and area measure different things: perimeter is the distance AROUND a shape (like walking the fence around a yard), while area is the space INSIDE a shape (like how much grass fills the yard). Let\'s explore both!',
+      },
+      {
+        id: 'watch-1',
+        type: 'watch',
+        title: 'Watch: Perimeter vs Area',
+        content:
+          'Let\'s see the difference between perimeter and area with a quick visual tour. Remember: perimeter is measured in units (inches, feet, etc.), while area is measured in square units (square inches, square feet, etc.).',
+        component: <AnimatedExplainer topicId="perimeter-area" />,
+      },
+      {
+        id: 'interact-1',
+        type: 'interact',
+        title: 'Try It: Rectangle',
+        content:
+          'Let\'s start with a rectangle. Look at how perimeter is the distance around the outside (length + width + length + width), while area is length times width. The formula P = 2(l + w) adds up all four sides. The formula A = l × w counts all the unit squares inside.',
+        component: <PerimeterAreaVisual />,
+      },
+      {
+        id: 'check-1',
+        type: 'check',
+        title: 'Quick Check: Rectangle Area',
+        content: 'Let\'s check your understanding!',
+        question: {
+          text: 'A rectangle has length 10 cm and width 6 cm. What is its area?',
+          type: 'multiple-choice',
+          options: ['16 cm', '32 cm', '60 cm²', '32 cm²'],
+          correctAnswer: '60 cm²',
+          explanation:
+            'Perfect! Area = length × width = 10 × 6 = 60 square centimeters (cm²). Remember that area is always in square units!',
+        },
+      },
+      {
+        id: 'interact-2',
+        type: 'interact',
+        title: 'Explore: Different Shapes',
+        content:
+          'Now try the triangle and parallelogram buttons. Notice how each shape has its own formula. For triangles, A = ½bh (half of base times height). For parallelograms, A = bh (base times height). The perimeter is always the sum of all the side lengths!',
+        component: <PerimeterAreaVisual />,
+      },
+      {
+        id: 'check-2',
+        type: 'check',
+        title: 'Quick Check: Triangle Area',
+        content: 'One more!',
+        question: {
+          text: 'A triangle has base 8 inches and height 5 inches. What is its area?',
+          type: 'multiple-choice',
+          options: ['40 in²', '20 in²', '13 in²', '16 in²'],
+          correctAnswer: '20 in²',
+          explanation:
+            'Excellent! Triangle area = ½ × base × height = ½ × 8 × 5 = 20 square inches. The triangle formula uses "half" because a triangle is half of a rectangle!',
+        },
+      },
+      {
+        id: 'summary-1',
+        type: 'summary',
+        title: 'Perimeter & Area Master! 🎉',
+        content:
+          'Outstanding work! You now know the difference between perimeter (distance around) and area (space inside), and you can use formulas for rectangles, triangles, and parallelograms. These skills are useful in real life for everything from painting rooms to building fences!',
+      },
+    ],
+
     'parallel-transversals': [
       {
         id: 'intro-1',
