@@ -12,8 +12,8 @@ import type {
 import {
   DEMO_WORKSHEET_ANALYSIS,
   DEMO_EXPLANATION,
-  DEMO_PRACTICE_PROBLEMS,
-  DEMO_QUIZ,
+  PRACTICE_BY_TOPIC,
+  QUIZZES_BY_TOPIC,
   DEMO_TRIANGLE_WORKSHEET,
 } from './demo-data';
 
@@ -71,7 +71,7 @@ export async function analyzeWorksheet(
             content: [
               {
                 type: 'text',
-                text: 'Analyze this geometry worksheet. Identify: 1) Main topic (choose from: points-lines-planes, angles, parallel-transversals, triangles-basics, congruence, perimeter-area, pythagorean, coordinate-geometry), 2) List of problems, 3) Key concepts covered, 4) Difficulty level, 5) Estimated grade level. Return as JSON matching the WorksheetAnalysis type.',
+                text: 'Analyze this geometry worksheet. Identify: 1) Main topic (choose from: inductive-reasoning, conditional-statements, related-conditionals, biconditionals, deductive-reasoning, segment-angle-addition, points-lines-planes, angles, parallel-transversals, triangles-basics, congruence, perimeter-area, pythagorean, coordinate-geometry), 2) List of problems, 3) Key concepts covered, 4) Difficulty level, 5) Estimated grade level. Return as JSON matching the WorksheetAnalysis type.',
               },
               {
                 type: 'image_url',
@@ -153,7 +153,8 @@ export async function generatePracticeProblems(
 
   if (demoMode) {
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    return DEMO_PRACTICE_PROBLEMS.slice(0, count);
+    const problems = PRACTICE_BY_TOPIC[topicId] || [];
+    return problems.slice(0, count);
   }
 
   // Real API implementation
@@ -171,7 +172,8 @@ export async function generatePracticeProblems(
     return await response.json();
   } catch (error) {
     console.error('Error generating practice problems:', error);
-    return DEMO_PRACTICE_PROBLEMS.slice(0, count);
+    const problems = PRACTICE_BY_TOPIC[topicId] || [];
+    return problems.slice(0, count);
   }
 }
 
@@ -187,7 +189,7 @@ export async function generateQuiz(
 
   if (demoMode) {
     await new Promise((resolve) => setTimeout(resolve, 1200));
-    return DEMO_QUIZ;
+    return QUIZZES_BY_TOPIC[topicId] || QUIZZES_BY_TOPIC['parallel-transversals'];
   }
 
   // Real API implementation
@@ -205,7 +207,7 @@ export async function generateQuiz(
     return await response.json();
   } catch (error) {
     console.error('Error generating quiz:', error);
-    return DEMO_QUIZ;
+    return QUIZZES_BY_TOPIC[topicId] || QUIZZES_BY_TOPIC['parallel-transversals'];
   }
 }
 

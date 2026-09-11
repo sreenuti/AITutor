@@ -38,7 +38,7 @@ export default function HomePage() {
             <h1 className="text-3xl font-bold text-gray-900">Sahasra Geometry Tutor</h1>
           </div>
           <p className="text-gray-600">
-            Welcome back, {profile.name}! Let&apos;s build your geometry confidence.
+            Welcome back, {profile.name}! Catching up on your reasoning & postulates unit.
           </p>
         </div>
 
@@ -131,9 +131,9 @@ export default function HomePage() {
         {/* Catch-Up Topics */}
         <Card className="bg-white/80 backdrop-blur">
           <CardHeader>
-            <CardTitle>Weeks 1-3 Catch-Up Topics</CardTitle>
+            <CardTitle>Weeks 1-3: Logic & Reasoning</CardTitle>
             <CardDescription>
-              Topics from the first three weeks you missed. Don&apos;t worry - we&apos;ll help you catch up!
+              Your class notes unit on inductive/deductive reasoning, conditionals, and postulates. Let&apos;s master them together!
             </CardDescription>
           </CardHeader>
           <CardContent>

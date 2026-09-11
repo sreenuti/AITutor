@@ -21,6 +21,123 @@ export const GEOMETRY_KB: KnowledgeEntry[] = [
     answer: "Geometry is everywhere! Architecture, design, engineering, art, video games, and even sports use geometry. Understanding shapes and angles helps you solve real-world problems.",
   },
   
+  // Inductive reasoning
+  {
+    topicId: 'inductive-reasoning',
+    patterns: ['inductive.*reasoning', 'what.*inductive', 'define inductive'],
+    answer: "Inductive reasoning is when you look at examples and make a general conjecture (educated guess). For example: 2, 4, 6, 8... you might conjecture the pattern is 'even numbers increasing by 2'.",
+  },
+  {
+    topicId: 'inductive-reasoning',
+    patterns: ['conjecture', 'what.*conjecture'],
+    answer: "A conjecture is an educated guess based on observing patterns. It might be true or false - that's why we test it with more examples or look for counterexamples!",
+  },
+  {
+    topicId: 'inductive-reasoning',
+    patterns: ['counterexample', 'what.*counterexample'],
+    answer: "A counterexample is an example that proves a conjecture FALSE. Just one counterexample is enough to disprove any conjecture! For example, if you conjecture 'all prime numbers are odd', the number 2 is a counterexample.",
+  },
+  {
+    topicId: 'inductive-reasoning',
+    patterns: ['pattern', 'sequence', 'find.*next'],
+    answer: "To find a pattern: look at how numbers change from one term to the next. Is it adding? Multiplying? Both? Write down the rule, then test it on all terms to see if it works!",
+  },
+  
+  // Conditional statements
+  {
+    topicId: 'conditional-statements',
+    patterns: ['conditional.*statement', 'if.*then', 'what.*conditional'],
+    answer: "A conditional statement has the form 'If p, then q.' The 'if' part (p) is the hypothesis, and the 'then' part (q) is the conclusion. Example: 'If it rains, then the ground is wet.'",
+  },
+  {
+    topicId: 'conditional-statements',
+    patterns: ['hypothesis', 'what.*hypothesis'],
+    answer: "The hypothesis is the 'if' part of a conditional statement. It's the condition that must be true. In 'If x > 5, then x > 0,' the hypothesis is 'x > 5.'",
+  },
+  {
+    topicId: 'conditional-statements',
+    patterns: ['conclusion.*conditional', 'what.*conclusion'],
+    answer: "The conclusion is the 'then' part of a conditional statement. It's what follows from the hypothesis. In 'If an angle is right, then it measures 90°,' the conclusion is 'it measures 90°.'",
+  },
+  
+  // Related conditionals
+  {
+    topicId: 'related-conditionals',
+    patterns: ['converse', 'what.*converse'],
+    answer: "The converse switches the hypothesis and conclusion. If the original is 'If p, then q,' the converse is 'If q, then p.' CAREFUL: the converse isn't always true even if the original is!",
+  },
+  {
+    topicId: 'related-conditionals',
+    patterns: ['inverse', 'what.*inverse'],
+    answer: "The inverse negates both parts. If the original is 'If p, then q,' the inverse is 'If NOT p, then NOT q.' Like the converse, it's not automatically true.",
+  },
+  {
+    topicId: 'related-conditionals',
+    patterns: ['contrapositive', 'what.*contrapositive'],
+    answer: "The contrapositive switches AND negates: 'If NOT q, then NOT p.' Here's the key: the contrapositive is ALWAYS logically equivalent to the original statement. If one is true, so is the other!",
+  },
+  {
+    topicId: 'related-conditionals',
+    patterns: ['negation', 'what.*negation', 'not p'],
+    answer: "Negation means the opposite. The negation of 'x > 5' is 'x ≤ 5' (not just 'x < 5'!). The negation of 'it is raining' is 'it is not raining.'",
+  },
+  {
+    topicId: 'related-conditionals',
+    patterns: ['logically equivalent', 'equivalent.*statement'],
+    answer: "Two statements are logically equivalent if they always have the same truth value. A conditional and its contrapositive are ALWAYS logically equivalent. But converse and inverse are equivalent to EACH OTHER, not to the original.",
+  },
+  
+  // Biconditionals
+  {
+    topicId: 'biconditionals',
+    patterns: ['biconditional', 'if and only if', 'iff'],
+    answer: "A biconditional uses 'if and only if' (iff). It means BOTH the conditional AND its converse are true. Example: 'x = 3 if and only if 2x = 6' (both directions work!).",
+  },
+  {
+    topicId: 'biconditionals',
+    patterns: ['write.*biconditional', 'how.*biconditional'],
+    answer: "To write a biconditional: (1) Make sure both the conditional and its converse are true. (2) Use 'if and only if' to combine them. Example: 'If p then q' + 'If q then p' = 'p if and only if q.'",
+  },
+  
+  // Deductive reasoning
+  {
+    topicId: 'deductive-reasoning',
+    patterns: ['deductive.*reasoning', 'what.*deductive'],
+    answer: "Deductive reasoning uses facts, rules, and logic to reach a guaranteed conclusion. Unlike inductive reasoning (which guesses from patterns), deductive reasoning gives certain results if the premises are true.",
+  },
+  {
+    topicId: 'deductive-reasoning',
+    patterns: ['law.*detachment', 'detachment'],
+    answer: "Law of Detachment: If 'p → q' is true AND p is true, then q MUST be true. Example: 'If it rains, the ground is wet' + 'It is raining' = 'The ground is wet.' Simple and powerful!",
+  },
+  {
+    topicId: 'deductive-reasoning',
+    patterns: ['law.*syllogism', 'syllogism'],
+    answer: "Law of Syllogism: If 'p → q' is true AND 'q → r' is true, then 'p → r' is true. It chains conditionals! Example: 'If A then B' + 'If B then C' = 'If A then C.'",
+  },
+  {
+    topicId: 'deductive-reasoning',
+    patterns: ['valid.*conclusion', 'invalid.*reasoning'],
+    answer: "A conclusion is valid if it logically follows from the given statements using deductive reasoning. If you can't apply the Law of Detachment or Syllogism correctly, write 'no valid conclusion.'",
+  },
+  
+  // Segment & Angle Addition
+  {
+    topicId: 'segment-angle-addition',
+    patterns: ['segment.*addition', 'postulate.*segment'],
+    answer: "Segment Addition Postulate: If B is between A and C, then AB + BC = AC. Use this to set up equations! Example: If AB = 5, BC = x, and AC = 12, then 5 + x = 12, so x = 7.",
+  },
+  {
+    topicId: 'segment-angle-addition',
+    patterns: ['angle.*addition', 'postulate.*angle'],
+    answer: "Angle Addition Postulate: If point D is in the interior of ∠ABC, then m∠ABD + m∠DBC = m∠ABC. Same idea as segment addition, but with angles!",
+  },
+  {
+    topicId: 'segment-angle-addition',
+    patterns: ['solve.*x', 'find.*x', 'how.*solve'],
+    answer: "For these problems: (1) Write the addition equation (like AB + BC = AC). (2) Substitute the given expressions. (3) Combine like terms. (4) Solve for x using algebra. The segment and angle problems often have the SAME answer!",
+  },
+  
   // Angles
   {
     topicId: 'angles',

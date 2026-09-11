@@ -25,6 +25,424 @@ interface LessonStep {
 
 export function getLessonSteps(topicId: string): LessonStep[] {
   const lessons: Record<string, LessonStep[]> = {
+    'inductive-reasoning': [
+      {
+        id: 'intro-1',
+        type: 'intro',
+        title: 'Welcome to Inductive Reasoning!',
+        content:
+          "Inductive reasoning is how you discover patterns and make conjectures. It's like being a math detective - you look at examples and figure out the rule!",
+      },
+      {
+        id: 'check-1',
+        type: 'check',
+        title: 'Example: Find the Pattern',
+        content: "Let's look at this sequence: 3, 6, 9, 12, 15, ... What's the pattern?",
+        question: {
+          text: 'The pattern is:',
+          type: 'multiple-choice',
+          options: ['Add 3 each time', 'Multiply by 2 each time', 'Add 6 each time', 'Square the position'],
+          correctAnswer: 'Add 3 each time',
+          explanation:
+            'Correct! Each number increases by 3. This is the CONJECTURE we make from observing the pattern: "Each term is 3 more than the previous term."',
+        },
+      },
+      {
+        id: 'check-2',
+        type: 'check',
+        title: 'What About Counterexamples?',
+        content: 'A counterexample DISPROVES a conjecture. Conjecture: "All prime numbers are odd." Is this true?',
+        question: {
+          text: 'Is the conjecture "All prime numbers are odd" true?',
+          type: 'true-false',
+          correctAnswer: 'false',
+          explanation:
+            'False! The number 2 is prime AND even, so it\'s a COUNTEREXAMPLE. Just ONE counterexample proves the conjecture wrong!',
+        },
+      },
+      {
+        id: 'check-3',
+        type: 'check',
+        title: 'Try Another Pattern',
+        content: 'Sequence: 1, 4, 9, 16, 25, ... What are these numbers?',
+        question: {
+          text: 'The pattern is:',
+          type: 'multiple-choice',
+          options: ['Perfect squares (1², 2², 3², ...)', 'Add 3, then 5, then 7, ...', 'Double and subtract 2', 'Both A and B'],
+          correctAnswer: 'Both A and B',
+          explanation:
+            'Both are correct! You can describe the pattern as "perfect squares" OR as "differences increase by 2." Multiple conjectures can describe the same pattern!',
+        },
+      },
+      {
+        id: 'summary-1',
+        type: 'summary',
+        title: 'Pattern Detective! 🔍',
+        content:
+          "You're now skilled at inductive reasoning! Remember: make conjectures from examples, but always test them. One counterexample proves a conjecture false!",
+      },
+    ],
+
+    'conditional-statements': [
+      {
+        id: 'intro-1',
+        type: 'intro',
+        title: 'Welcome to Conditional Statements!',
+        content:
+          'Conditional statements are "if-then" statements used everywhere in geometry. Understanding their structure helps you write proofs and logical arguments!',
+      },
+      {
+        id: 'check-1',
+        type: 'check',
+        title: 'Identify the Parts',
+        content: 'Statement: "If an angle is right, then it measures 90°." What\'s the hypothesis?',
+        question: {
+          text: 'The hypothesis (the "if" part) is:',
+          type: 'multiple-choice',
+          options: ['An angle is right', 'It measures 90°', 'Right angle', 'The entire statement'],
+          correctAnswer: 'An angle is right',
+          explanation:
+            'Correct! The hypothesis is the "if" part - the condition. The conclusion is the "then" part - what follows.',
+        },
+      },
+      {
+        id: 'check-2',
+        type: 'check',
+        title: 'What\'s the Conclusion?',
+        content: 'Same statement: "If an angle is right, then it measures 90°."',
+        question: {
+          text: 'The conclusion (the "then" part) is:',
+          type: 'multiple-choice',
+          options: ['An angle is right', 'It measures 90°', 'Right angle measures 90°', 'If an angle'],
+          correctAnswer: 'It measures 90°',
+          explanation:
+            'Perfect! The conclusion is what RESULTS from the hypothesis. Form: If [hypothesis], then [conclusion].',
+        },
+      },
+      {
+        id: 'check-3',
+        type: 'check',
+        title: 'Rewrite as Conditional',
+        content: 'Rewrite: "All birds have feathers." → "If _____, then _____."',
+        question: {
+          text: 'The conditional form is:',
+          type: 'multiple-choice',
+          options: [
+            'If it is a bird, then it has feathers',
+            'If it has feathers, then it is a bird',
+            'If birds, then feathers',
+            'If feathers exist, then birds exist',
+          ],
+          correctAnswer: 'If it is a bird, then it has feathers',
+          explanation:
+            'Exactly! "All [X] are [Y]" becomes "If [X], then [Y]." This is a key skill for geometry proofs!',
+        },
+      },
+      {
+        id: 'summary-1',
+        type: 'summary',
+        title: 'Conditional Master! ✅',
+        content:
+          "You've mastered conditional statements! Hypothesis = if part, Conclusion = then part. You're ready for more complex logic!",
+      },
+    ],
+
+    'related-conditionals': [
+      {
+        id: 'intro-1',
+        type: 'intro',
+        title: 'Welcome to Related Conditionals!',
+        content:
+          "Every conditional has three related forms: converse, inverse, and contrapositive. Understanding how they're different (and which are equivalent!) is crucial.",
+      },
+      {
+        id: 'check-1',
+        type: 'check',
+        title: 'The Converse',
+        content: 'Original: "If p, then q." The converse SWITCHES the parts.',
+        question: {
+          text: 'The converse is:',
+          type: 'multiple-choice',
+          options: ['If q, then p', 'If NOT p, then NOT q', 'If NOT q, then NOT p', 'If p, then NOT q'],
+          correctAnswer: 'If q, then p',
+          explanation:
+            'Correct! The converse just swaps hypothesis and conclusion. CAREFUL: the converse isn\'t always true even if the original is!',
+        },
+      },
+      {
+        id: 'check-2',
+        type: 'check',
+        title: 'The Inverse',
+        content: 'Original: "If p, then q." The inverse NEGATES both parts.',
+        question: {
+          text: 'The inverse is:',
+          type: 'multiple-choice',
+          options: ['If q, then p', 'If NOT p, then NOT q', 'If NOT q, then NOT p', 'NOT if p, then NOT q'],
+          correctAnswer: 'If NOT p, then NOT q',
+          explanation:
+            'Right! The inverse negates both hypothesis and conclusion. Like the converse, it\'s not automatically true.',
+        },
+      },
+      {
+        id: 'check-3',
+        type: 'check',
+        title: 'The Contrapositive',
+        content: 'Original: "If p, then q." The contrapositive SWITCHES and NEGATES.',
+        question: {
+          text: 'The contrapositive is:',
+          type: 'multiple-choice',
+          options: ['If q, then p', 'If NOT p, then NOT q', 'If NOT q, then NOT p', 'If p, then NOT q'],
+          correctAnswer: 'If NOT q, then NOT p',
+          explanation:
+            'Perfect! The contrapositive is the most important - it\'s ALWAYS logically equivalent to the original. If one is true, both are!',
+        },
+      },
+      {
+        id: 'check-4',
+        type: 'check',
+        title: 'Logical Equivalence',
+        content: 'Which pairs are ALWAYS logically equivalent?',
+        question: {
+          text: 'Choose the equivalent pair:',
+          type: 'multiple-choice',
+          options: [
+            'Conditional and contrapositive',
+            'Conditional and converse',
+            'Converse and inverse',
+            'Both A and C',
+          ],
+          correctAnswer: 'Both A and C',
+          explanation:
+            'Excellent! Conditional ≡ Contrapositive, and Converse ≡ Inverse. This is a key fact for proofs!',
+        },
+      },
+      {
+        id: 'summary-1',
+        type: 'summary',
+        title: 'Logic Expert! 🧠',
+        content:
+          "You've mastered related conditionals! Remember: contrapositive is equivalent to the original. Converse and inverse are equivalent to EACH OTHER.",
+      },
+    ],
+
+    'biconditionals': [
+      {
+        id: 'intro-1',
+        type: 'intro',
+        title: 'Welcome to Biconditional Statements!',
+        content:
+          'A biconditional combines a conditional and its converse using "if and only if" (iff). It means BOTH directions are true!',
+      },
+      {
+        id: 'check-1',
+        type: 'check',
+        title: 'Understanding "Iff"',
+        content: '"x = 3 if and only if 2x = 6" means BOTH "if x = 3, then 2x = 6" AND "if 2x = 6, then x = 3."',
+        question: {
+          text: 'A biconditional is true only when:',
+          type: 'multiple-choice',
+          options: [
+            'The conditional is true',
+            'The converse is true',
+            'BOTH conditional and converse are true',
+            'Either conditional or converse is true',
+          ],
+          correctAnswer: 'BOTH conditional and converse are true',
+          explanation:
+            'Exactly! A biconditional works BOTH WAYS. Both the original conditional and its converse must be true.',
+        },
+      },
+      {
+        id: 'check-2',
+        type: 'check',
+        title: 'Which Can Be Biconditional?',
+        content: 'Can this be a biconditional? "An angle is right if and only if it measures 90°."',
+        question: {
+          text: 'Is this a valid biconditional?',
+          type: 'true-false',
+          correctAnswer: 'true',
+          explanation:
+            'Yes! Both directions work: (1) If right, then 90°, and (2) If 90°, then right. Perfect biconditional!',
+        },
+      },
+      {
+        id: 'check-3',
+        type: 'check',
+        title: 'Identifying Parts',
+        content: '"Two angles are congruent iff they have equal measures." What are p and q?',
+        question: {
+          text: 'The form "p iff q" has:',
+          type: 'multiple-choice',
+          options: [
+            'p = angles congruent, q = equal measures',
+            'p = two angles, q = congruent',
+            'p = equal, q = measures',
+            'p = measures, q = angles',
+          ],
+          correctAnswer: 'p = angles congruent, q = equal measures',
+          explanation:
+            'Perfect! "p iff q" means "p if and only if q." Here, p and q can be swapped and the statement stays true.',
+        },
+      },
+      {
+        id: 'summary-1',
+        type: 'summary',
+        title: 'Biconditional Pro! ↔️',
+        content:
+          "You've mastered biconditionals! Remember: 'iff' means BOTH directions work. It's the strongest form of logical connection!",
+      },
+    ],
+
+    'deductive-reasoning': [
+      {
+        id: 'intro-1',
+        type: 'intro',
+        title: 'Welcome to Deductive Reasoning!',
+        content:
+          "Deductive reasoning uses facts and logic to reach CERTAIN conclusions. You'll learn two powerful laws: Detachment and Syllogism!",
+      },
+      {
+        id: 'check-1',
+        type: 'check',
+        title: 'Law of Detachment',
+        content: 'Given: (1) "If it rains, then the ground is wet." (2) "It is raining." What can you conclude?',
+        question: {
+          text: 'The valid conclusion is:',
+          type: 'multiple-choice',
+          options: ['The ground is wet', 'It is not raining', 'The ground is dry', 'No valid conclusion'],
+          correctAnswer: 'The ground is wet',
+          explanation:
+            'Correct! Law of Detachment: If "p → q" is true AND p is true, then q MUST be true. Simple but powerful!',
+        },
+      },
+      {
+        id: 'check-2',
+        type: 'check',
+        title: 'Invalid Detachment',
+        content: 'Given: (1) "If it rains, then the ground is wet." (2) "The ground is wet." Can you conclude it rained?',
+        question: {
+          text: 'Can you conclude "It rained"?',
+          type: 'true-false',
+          correctAnswer: 'false',
+          explanation:
+            'NO! The ground could be wet for other reasons (sprinkler, dew, etc.). You need the HYPOTHESIS (p) to be true, not the conclusion (q).',
+        },
+      },
+      {
+        id: 'check-3',
+        type: 'check',
+        title: 'Law of Syllogism',
+        content: 'Given: (1) "If A, then B." (2) "If B, then C." What follows?',
+        question: {
+          text: 'The valid conclusion is:',
+          type: 'multiple-choice',
+          options: ['If A, then C', 'If C, then A', 'If B, then A', 'No valid conclusion'],
+          correctAnswer: 'If A, then C',
+          explanation:
+            'Perfect! Law of Syllogism chains conditionals: If p→q and q→r are both true, then p→r is true. It connects the chain!',
+        },
+      },
+      {
+        id: 'check-4',
+        type: 'check',
+        title: 'Real Geometry Example',
+        content: 'Given: (1) "If ∠A is obtuse, then m∠A > 90°." (2) "m∠A = 115°." Conclusion?',
+        question: {
+          text: 'The valid conclusion is:',
+          type: 'multiple-choice',
+          options: ['∠A is obtuse', 'No valid conclusion', '∠A is acute', 'Cannot determine'],
+          correctAnswer: 'No valid conclusion',
+          explanation:
+            'CAREFUL! We know m∠A > 90°, but the conditional is "If obtuse, then >90°," not the reverse. We can\'t use detachment here. (Though we could if we used the contrapositive!)',
+        },
+      },
+      {
+        id: 'summary-1',
+        type: 'summary',
+        title: 'Deductive Reasoning Master! 🎯',
+        content:
+          "You've mastered deductive reasoning! Detachment: p→q + p = q. Syllogism: p→q + q→r = p→r. Use these in proofs!",
+      },
+    ],
+
+    'segment-angle-addition': [
+      {
+        id: 'intro-1',
+        type: 'intro',
+        title: 'Welcome to Addition Postulates!',
+        content:
+          "These postulates let you solve for unknown lengths and angles using algebra. The segment and angle problems often pair up with the SAME answer!",
+      },
+      {
+        id: 'check-1',
+        type: 'check',
+        title: 'Segment Addition Postulate',
+        content: 'If B is between A and C, then AB + BC = AC. Example: AB = 5, AC = 12. Find BC.',
+        question: {
+          text: 'BC = ?',
+          type: 'multiple-choice',
+          options: ['5', '7', '12', '17'],
+          correctAnswer: '7',
+          explanation:
+            'Correct! Set up the equation: 5 + BC = 12. Solve: BC = 12 - 5 = 7. Simple algebra!',
+        },
+      },
+      {
+        id: 'check-2',
+        type: 'check',
+        title: 'With Variables',
+        content: 'Points on a line: IH = 10, HG = 2x - 12, IG = x + 10. Solve for x.',
+        question: {
+          text: 'x = ?',
+          type: 'multiple-choice',
+          options: ['12', '22', '10', '32'],
+          correctAnswer: '12',
+          explanation:
+            'Right! IH + HG = IG → 10 + (2x - 12) = x + 10 → 2x - 2 = x + 10 → x = 12. Keep like terms organized!',
+        },
+      },
+      {
+        id: 'check-3',
+        type: 'check',
+        title: 'Angle Addition Postulate',
+        content: 'If ray ST is between rays SR and SC, then m∠RST + m∠TSC = m∠RSC.',
+        question: {
+          text: 'If m∠RST = 14x + 2, m∠CST = 8x + 14, and m∠RSC = 60°, what is x?',
+          type: 'multiple-choice',
+          options: ['2', '12', '4', '60'],
+          correctAnswer: '2',
+          explanation:
+            'Perfect! (14x + 2) + (8x + 14) = 60 → 22x + 16 = 60 → 22x = 44 → x = 2. Notice the pattern!',
+        },
+      },
+      {
+        id: 'check-4',
+        type: 'check',
+        title: 'The Pattern',
+        content: 'On worksheets, segment and angle problems with the same setup often have THE SAME value of x!',
+        question: {
+          text: 'Why do paired problems have the same x?',
+          type: 'multiple-choice',
+          options: [
+            'The postulates have the same structure',
+            'Pure coincidence',
+            'Teacher trick',
+            'Only sometimes',
+          ],
+          correctAnswer: 'The postulates have the same structure',
+          explanation:
+            'Exactly! Both postulates use addition (part + part = whole), so similar algebraic expressions yield the same x. Clever design!',
+        },
+      },
+      {
+        id: 'summary-1',
+        type: 'summary',
+        title: 'Addition Postulate Expert! 📐',
+        content:
+          "You've mastered both postulates! Set up the equation, substitute, combine like terms, solve for x. Watch for paired problems!",
+      },
+    ],
+
     'parallel-transversals': [
       {
         id: 'intro-1',
