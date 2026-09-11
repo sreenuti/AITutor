@@ -13,6 +13,8 @@ import { getTopicById } from '@/lib/curriculum';
 import { getExplanation, generatePracticeProblems, generateQuiz } from '@/lib/tutor';
 import { getTopicProgress, updateProfile, addPracticeSession, addQuizResult } from '@/lib/storage';
 import type { Explanation, PracticeProblem, Quiz, QuizQuestion } from '@/lib/tutor/types';
+import { LessonSteps } from '@/components/interactive/LessonSteps';
+import { getLessonSteps } from '@/lib/tutor/lesson-content';
 
 export default function LearnPage({ params }: { params: Promise<{ topicId: string }> }) {
   const resolvedParams = use(params);
@@ -251,174 +253,15 @@ export default function LearnPage({ params }: { params: Promise<{ topicId: strin
             </TabsTrigger>
           </TabsList>
 
-          {/* Explain Tab */}
+          {/* Explain Tab - Interactive Step-by-Step Lesson */}
           <TabsContent value="explain">
-            {loadingExplanation ? (
-              <Card>
-                <CardContent className="py-12 text-center">
-                  <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-indigo-600" />
-                  <p className="text-gray-600">Loading explanation...</p>
-                </CardContent>
-              </Card>
-            ) : explanation ? (
-              <div className="space-y-6">
-                {/* Introduction */}
-                <Card className="bg-white/80 backdrop-blur">
-                  <CardHeader>
-                    <CardTitle>What is {explanation.title}?</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-700 leading-relaxed">{explanation.introduction}</p>
-                  </CardContent>
-                </Card>
-
-                {/* Key Points */}
-                <Card className="bg-white/80 backdrop-blur">
-                  <CardHeader>
-                    <CardTitle>Key Points</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-3">
-                      {explanation.keyPoints.map((point, idx) => (
-                        <li key={idx} className="flex gap-3">
-                          <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                          <span className="text-gray-700" dangerouslySetInnerHTML={{ __html: point.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-
-                {/* Worked Example */}
-                <Card className="bg-white/80 backdrop-blur border-indigo-200">
-                  <CardHeader className="bg-indigo-50">
-                    <CardTitle className="text-indigo-900">Worked Example</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4 pt-6">
-                    <div className="p-4 bg-blue-50 rounded-lg">
-                      <p className="font-semibold text-blue-900 mb-2">Problem:</p>
-                      <p className="text-gray-700">{explanation.workedExample.problem}</p>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-gray-900 mb-2">Solution Steps:</p>
-                      <ol className="space-y-2">
-                        {explanation.workedExample.steps.map((step, idx) => (
-                          <li key={idx} className="flex gap-3">
-                            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center text-sm font-semibold">
-                              {idx + 1}
-                            </span>
-                            <span className="text-gray-700">{step}</span>
-                          </li>
-                        ))}
-                      </ol>
-                    </div>
-                    <div className="p-4 bg-green-50 rounded-lg border border-green-200">
-                      <p className="font-semibold text-green-900">Answer: {explanation.workedExample.answer}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Check Understanding */}
-                <Card className="bg-white/80 backdrop-blur">
-                  <CardHeader>
-                    <CardTitle>Check Your Understanding</CardTitle>
-                    <CardDescription>
-                      Answer these quick questions to make sure you&apos;ve got the main ideas
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-6">
-                    {explanation.checkUnderstanding.map((question, idx) => (
-                      <div key={question.id} className="p-4 border rounded-lg">
-                        <p className="font-medium text-gray-900 mb-3">
-                          {idx + 1}. {question.question}
-                        </p>
-                        {question.type === 'multiple-choice' && question.options ? (
-                          <div className="space-y-2">
-                            {question.options.map((option) => (
-                              <button
-                                key={option}
-                                onClick={() => {
-                                  setMicroAnswers({ ...microAnswers, [question.id]: option });
-                                  checkMicroQuestion(question.id, option);
-                                }}
-                                disabled={microChecked[question.id] !== undefined}
-                                className={`w-full text-left p-3 rounded border transition-colors ${
-                                  microAnswers[question.id] === option
-                                    ? microChecked[question.id]
-                                      ? 'bg-green-50 border-green-500'
-                                      : microChecked[question.id] === false
-                                      ? 'bg-red-50 border-red-500'
-                                      : 'bg-indigo-50 border-indigo-500'
-                                    : 'hover:bg-gray-50 border-gray-200'
-                                }`}
-                              >
-                                {option}
-                              </button>
-                            ))}
-                          </div>
-                        ) : (
-                          <div className="space-y-2">
-                            <div className="flex gap-2">
-                              <Button
-                                onClick={() => {
-                                  setMicroAnswers({ ...microAnswers, [question.id]: 'true' });
-                                  checkMicroQuestion(question.id, 'true');
-                                }}
-                                disabled={microChecked[question.id] !== undefined}
-                                variant={microAnswers[question.id] === 'true' ? 'default' : 'outline'}
-                                size="sm"
-                              >
-                                True
-                              </Button>
-                              <Button
-                                onClick={() => {
-                                  setMicroAnswers({ ...microAnswers, [question.id]: 'false' });
-                                  checkMicroQuestion(question.id, 'false');
-                                }}
-                                disabled={microChecked[question.id] !== undefined}
-                                variant={microAnswers[question.id] === 'false' ? 'default' : 'outline'}
-                                size="sm"
-                              >
-                                False
-                              </Button>
-                            </div>
-                          </div>
-                        )}
-                        {microChecked[question.id] !== undefined && (
-                          <Alert className={`mt-3 ${microChecked[question.id] ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
-                            {microChecked[question.id] ? (
-                              <CheckCircle2 className="h-4 w-4 text-green-600" />
-                            ) : (
-                              <XCircle className="h-4 w-4 text-red-600" />
-                            )}
-                            <AlertDescription className={microChecked[question.id] ? 'text-green-900' : 'text-red-900'}>
-                              {microChecked[question.id] ? 'Correct! ' : 'Not quite. '}
-                              {question.explanation}
-                            </AlertDescription>
-                          </Alert>
-                        )}
-                      </div>
-                    ))}
-                  </CardContent>
-                </Card>
-
-                <div className="flex justify-center">
-                  <Button
-                    onClick={() => setActiveTab('practice')}
-                    size="lg"
-                    className="bg-indigo-600 hover:bg-indigo-700"
-                  >
-                    Ready to Practice →
-                  </Button>
-                </div>
-              </div>
-            ) : (
-              <Card>
-                <CardContent className="py-12 text-center">
-                  <p className="text-gray-600">Failed to load explanation</p>
-                </CardContent>
-              </Card>
-            )}
+            <LessonSteps
+              steps={getLessonSteps(topicId)}
+              onComplete={() => {
+                // Mark as practiced in profile
+                setActiveTab('practice');
+              }}
+            />
           </TabsContent>
 
           {/* Practice Tab - Content continues in next file due to length */}
