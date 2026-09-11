@@ -18,6 +18,8 @@ import { getLessonSteps } from '@/lib/tutor/lesson-content';
 import { ChatPanel } from '@/components/chat/ChatPanel';
 import { ChatSettings } from '@/components/chat/ChatSettings';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { SegmentAdditionVisual } from '@/components/interactive/SegmentAdditionVisual';
+import { AngleAdditionVisual } from '@/components/interactive/AngleAdditionVisual';
 
 export default function LearnPage({ params }: { params: Promise<{ topicId: string }> }) {
   const resolvedParams = use(params);
@@ -103,6 +105,40 @@ export default function LearnPage({ params }: { params: Promise<{ topicId: strin
     } finally {
       setLoadingQuiz(false);
     }
+  };
+
+  const renderDiagram = (visual?: string) => {
+    if (!visual) return null;
+    
+    const [type, params] = visual.split(':');
+    if (type === 'segment') {
+      const [partA, partB, whole] = params.split(',');
+      return (
+        <div className="mb-4">
+          <SegmentAdditionVisual
+            partA={partA}
+            partB={partB}
+            whole={whole}
+            showLabels={true}
+            interactive={false}
+          />
+        </div>
+      );
+    } else if (type === 'angle') {
+      const [angle1, angle2, whole] = params.split(',');
+      return (
+        <div className="mb-4">
+          <AngleAdditionVisual
+            angle1={angle1}
+            angle2={angle2}
+            whole={whole}
+            showLabels={true}
+            interactive={false}
+          />
+        </div>
+      );
+    }
+    return null;
   };
 
   const checkMicroQuestion = (questionId: string, answer: string) => {
@@ -290,6 +326,9 @@ export default function LearnPage({ params }: { params: Promise<{ topicId: strin
                     <div className="space-y-6">
                       {practiceProblems.map((problem, idx) => (
                         <div key={problem.id} className="p-4 border rounded-lg bg-white">
+                          {/* Diagram */}
+                          {renderDiagram(problem.visual)}
+                          
                           <p className="font-medium text-gray-900 mb-4">
                             {idx + 1}. {problem.problem}
                           </p>
@@ -425,6 +464,9 @@ export default function LearnPage({ params }: { params: Promise<{ topicId: strin
                         <div className="space-y-6">
                           {quiz.questions.map((question, idx) => (
                             <div key={question.id} className="p-4 border rounded-lg bg-white">
+                              {/* Diagram */}
+                              {renderDiagram(question.visual)}
+                              
                               <div className="flex justify-between items-start mb-3">
                                 <p className="font-medium text-gray-900 flex-1">
                                   {idx + 1}. {question.question}

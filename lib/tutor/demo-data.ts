@@ -327,6 +327,7 @@ export const PRACTICE_BY_TOPIC: Record<string, PracticeProblem[]> = {
       hint2: 'Substitute: 10 + (2x-12) = x+10.',
       answer: 'x = 12',
       explanation: 'Set up: 10 + (2x-12) = x+10. Simplify: 2x-2 = x+10. Solve: x=12.',
+      visual: 'segment:10,2x-12,x+10',
     },
     {
       id: 'seg-2',
@@ -335,6 +336,7 @@ export const PRACTICE_BY_TOPIC: Record<string, PracticeProblem[]> = {
       hint2: '(x+6) + (x+3) = 17.',
       answer: 'x = 4',
       explanation: '(x+6) + (x+3) = 17 → 2x+9 = 17 → 2x = 8 → x = 4.',
+      visual: 'segment:x+6,x+3,17',
     },
     {
       id: 'seg-3',
@@ -343,6 +345,7 @@ export const PRACTICE_BY_TOPIC: Record<string, PracticeProblem[]> = {
       hint2: '(14x+2) + (8x+14) = 60.',
       answer: 'x = 2',
       explanation: '(14x+2) + (8x+14) = 60 → 22x+16 = 60 → 22x = 44 → x = 2.',
+      visual: 'angle:14x+2,8x+14,60',
     },
     {
       id: 'seg-4',
@@ -351,6 +354,7 @@ export const PRACTICE_BY_TOPIC: Record<string, PracticeProblem[]> = {
       hint2: '(1+2x) + (x+9) = 10.',
       answer: 'x = 0',
       explanation: '(1+2x) + (x+9) = 10 → 3x+10 = 10 → 3x = 0 → x = 0.',
+      visual: 'segment:1+2x,x+9,10',
     },
     {
       id: 'seg-5',
@@ -359,6 +363,7 @@ export const PRACTICE_BY_TOPIC: Record<string, PracticeProblem[]> = {
       hint2: '(x+46) + (x+98) = 120.',
       answer: 'x = -12',
       explanation: '(x+46) + (x+98) = 120 → 2x+144 = 120 → 2x = -24 → x = -12. (Negative x is valid in algebra!)',
+      visual: 'angle:x+46,x+98,120',
     },
   ],
 };
@@ -872,6 +877,7 @@ export const QUIZZES_BY_TOPIC: Record<string, Quiz> = {
         correctAnswer: '12',
         explanation: 'IH + HG = IG → 10 + (2x-12) = x+10 → 2x-2 = x+10 → x=12.',
         points: 5,
+        visual: 'segment:10,2x-12,x+10',
       },
       {
         id: 'q3',
@@ -894,6 +900,7 @@ export const QUIZZES_BY_TOPIC: Record<string, Quiz> = {
         correctAnswer: '2',
         explanation: '(14x+2) + (8x+14) = 60 → 22x+16 = 60 → 22x=44 → x=2.',
         points: 5,
+        visual: 'angle:14x+2,8x+14,60',
       },
       {
         id: 'q5',
@@ -902,6 +909,7 @@ export const QUIZZES_BY_TOPIC: Record<string, Quiz> = {
         correctAnswer: '4',
         explanation: '(x+6) + (x+3) = 17 → 2x+9 = 17 → 2x=8 → x=4.',
         points: 5,
+        visual: 'segment:x+6,x+3,17',
       },
       {
         id: 'q6',
@@ -919,6 +927,7 @@ export const QUIZZES_BY_TOPIC: Record<string, Quiz> = {
         correctAnswer: '0',
         explanation: '(1+2x) + (x+9) = 10 → 3x+10 = 10 → 3x=0 → x=0.',
         points: 5,
+        visual: 'segment:1+2x,x+9,10',
       },
       {
         id: 'q8',

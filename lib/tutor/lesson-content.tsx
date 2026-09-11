@@ -7,6 +7,11 @@ import { ParallelLinesVisual } from '@/components/interactive/ParallelLinesVisua
 import { TriangleAngleVisual } from '@/components/interactive/TriangleAngleVisual';
 import { AngleTypesVisual } from '@/components/interactive/AngleTypesVisual';
 import { AnimatedExplainer } from '@/components/interactive/AnimatedExplainer';
+import { SegmentAdditionVisual } from '@/components/interactive/SegmentAdditionVisual';
+import { AngleAdditionVisual } from '@/components/interactive/AngleAdditionVisual';
+import { InductivePatternVisual } from '@/components/interactive/InductivePatternVisual';
+import { ConditionalStatementVisual } from '@/components/interactive/ConditionalStatementVisual';
+import { DeductiveReasoningVisual } from '@/components/interactive/DeductiveReasoningVisual';
 
 interface LessonStep {
   id: string;
@@ -32,6 +37,14 @@ export function getLessonSteps(topicId: string): LessonStep[] {
         title: 'Welcome to Inductive Reasoning!',
         content:
           "Inductive reasoning is how you discover patterns and make conjectures. It's like being a math detective - you look at examples and figure out the rule!",
+      },
+      {
+        id: 'interact-1',
+        type: 'interact',
+        title: 'Watch: Visual Patterns',
+        content:
+          "Let's explore visual patterns! Switch between different pattern types and watch how they grow. Can you predict the next figure?",
+        component: <InductivePatternVisual />,
       },
       {
         id: 'check-1',
@@ -90,6 +103,14 @@ export function getLessonSteps(topicId: string): LessonStep[] {
         title: 'Welcome to Conditional Statements!',
         content:
           'Conditional statements are "if-then" statements used everywhere in geometry. Understanding their structure helps you write proofs and logical arguments!',
+      },
+      {
+        id: 'interact-1',
+        type: 'interact',
+        title: 'Explore: Conditional Statements with Geometry',
+        content:
+          'See how conditional statements work with actual geometric figures. Switch between examples to see the hypothesis (IF part) and conclusion (THEN part).',
+        component: <ConditionalStatementVisual />,
       },
       {
         id: 'check-1',
@@ -302,6 +323,14 @@ export function getLessonSteps(topicId: string): LessonStep[] {
           "Deductive reasoning uses facts and logic to reach CERTAIN conclusions. You'll learn two powerful laws: Detachment and Syllogism!",
       },
       {
+        id: 'interact-1',
+        type: 'interact',
+        title: 'Explore: Deductive Reasoning with Angles',
+        content:
+          'See how deductive reasoning works with real geometry problems. Switch between Law of Detachment, Law of Syllogism, and common mistakes!',
+        component: <DeductiveReasoningVisual />,
+      },
+      {
         id: 'check-1',
         type: 'check',
         title: 'Law of Detachment',
@@ -372,6 +401,22 @@ export function getLessonSteps(topicId: string): LessonStep[] {
         title: 'Welcome to Addition Postulates!',
         content:
           "These postulates let you solve for unknown lengths and angles using algebra. The segment and angle problems often pair up with the SAME answer!",
+      },
+      {
+        id: 'interact-1',
+        type: 'interact',
+        title: 'Explore: Segment Addition',
+        content:
+          'See how the Segment Addition Postulate works! Drag the slider to change x and watch the segments adjust. When does the equation balance?',
+        component: <SegmentAdditionVisual partA="10" partB="2x - 12" whole="x + 10" showLabels={true} interactive={true} />,
+      },
+      {
+        id: 'interact-2',
+        type: 'interact',
+        title: 'Explore: Angle Addition',
+        content:
+          'Now try the Angle Addition Postulate! Notice how it follows the same pattern as segments - part + part = whole.',
+        component: <AngleAdditionVisual angle1="14x + 2" angle2="8x + 14" whole="60" showLabels={true} interactive={true} />,
       },
       {
         id: 'check-1',

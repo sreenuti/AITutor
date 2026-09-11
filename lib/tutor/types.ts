@@ -59,6 +59,7 @@ export interface QuizQuestion {
   correctAnswer: string;
   explanation: string;
   points: number;
+  visual?: string;
 }
 
 export interface Quiz {
