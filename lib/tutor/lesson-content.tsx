@@ -12,6 +12,11 @@ import { AngleAdditionVisual } from '@/components/interactive/AngleAdditionVisua
 import { InductivePatternVisual } from '@/components/interactive/InductivePatternVisual';
 import { ConditionalStatementVisual } from '@/components/interactive/ConditionalStatementVisual';
 import { DeductiveReasoningVisual } from '@/components/interactive/DeductiveReasoningVisual';
+import { PointsLinesVisual } from '@/components/interactive/PointsLinesVisual';
+import { CongruenceVisual } from '@/components/interactive/CongruenceVisual';
+import { PerimeterAreaVisual } from '@/components/interactive/PerimeterAreaVisual';
+import { PythagoreanVisual } from '@/components/interactive/PythagoreanVisual';
+import { CoordinateGeometryVisual } from '@/components/interactive/CoordinateGeometryVisual';
 
 interface LessonStep {
   id: string;
@@ -660,6 +665,270 @@ export function getLessonSteps(topicId: string): LessonStep[] {
         title: 'Angle Expert! 🎉',
         content:
           "You now know all the angle types: acute (<90°), right (=90°), obtuse (>90°, <180°), and straight (=180°). You're ready to identify angles anywhere!",
+      },
+    ],
+
+    'points-lines-planes': [
+      {
+        id: 'intro-1',
+        type: 'intro',
+        title: 'Welcome to Points, Lines, and Planes!',
+        content:
+          "These are the building blocks of geometry! You'll learn the basic geometric objects and how to name them correctly.",
+      },
+      {
+        id: 'interact-1',
+        type: 'interact',
+        title: 'Explore: Geometric Objects',
+        content:
+          'Click through each type to see how points, lines, segments, rays, and planes are drawn and named.',
+        component: <PointsLinesVisual />,
+      },
+      {
+        id: 'check-1',
+        type: 'check',
+        title: 'Quick Check: Naming',
+        content: 'A line segment has two endpoints.',
+        question: {
+          text: 'Is this statement true?',
+          type: 'true-false',
+          correctAnswer: 'true',
+          explanation:
+            'True! A segment is part of a line with two endpoints, like AB̅.',
+        },
+      },
+      {
+        id: 'check-2',
+        type: 'check',
+        title: 'Quick Check: Notation',
+        content: 'How do we name a ray?',
+        question: {
+          text: 'When naming a ray, you must:',
+          type: 'multiple-choice',
+          options: ['Start with the endpoint', 'Start with any point', 'Use lowercase letters', 'Use three points'],
+          correctAnswer: 'Start with the endpoint',
+          explanation:
+            'Correct! A ray is named starting with its endpoint. Ray AB⃗ starts at A and goes through B.',
+        },
+      },
+      {
+        id: 'summary-1',
+        type: 'summary',
+        title: 'Geometry Basics Mastered! 📐',
+        content:
+          "You now understand points, lines, segments, rays, and planes - the foundation of all geometry!",
+      },
+    ],
+
+    'congruence': [
+      {
+        id: 'intro-1',
+        type: 'intro',
+        title: 'Welcome to Congruence!',
+        content:
+          "Congruent figures have the same size and shape. This is one of the most important concepts in geometry!",
+      },
+      {
+        id: 'interact-1',
+        type: 'interact',
+        title: 'Explore: Congruent Triangles',
+        content:
+          'Look at these two triangles. Click "Show Congruence Marks" to see how we indicate equal sides and angles.',
+        component: <CongruenceVisual />,
+      },
+      {
+        id: 'check-1',
+        type: 'check',
+        title: 'Quick Check: Definition',
+        content: 'What does congruent mean?',
+        question: {
+          text: 'Two figures are congruent if they have:',
+          type: 'multiple-choice',
+          options: ['Same size only', 'Same shape only', 'Same size AND shape', 'Different sizes'],
+          correctAnswer: 'Same size AND shape',
+          explanation:
+            'Perfect! Congruent means exactly the same size AND shape. Symbol: ≅',
+        },
+      },
+      {
+        id: 'check-2',
+        type: 'check',
+        title: 'Quick Check: Notation',
+        content: 'If △ABC ≅ △DEF, what does that tell us?',
+        question: {
+          text: 'Which is TRUE?',
+          type: 'multiple-choice',
+          options: ['AB = DE', 'Only angles are equal', 'Only sides are equal', 'Triangles are similar but not congruent'],
+          correctAnswer: 'AB = DE',
+          explanation:
+            'Yes! When triangles are congruent with that notation, corresponding parts match: AB = DE, BC = EF, AC = DF, and all angles are equal.',
+        },
+      },
+      {
+        id: 'summary-1',
+        type: 'summary',
+        title: 'Congruence Expert! ≅',
+        content:
+          "You understand congruence! Remember: congruent figures have ALL corresponding parts equal.",
+      },
+    ],
+
+    'perimeter-area': [
+      {
+        id: 'intro-1',
+        type: 'intro',
+        title: 'Welcome to Perimeter and Area!',
+        content:
+          "Perimeter is the distance around a shape. Area is the space inside. You'll learn formulas for common shapes!",
+      },
+      {
+        id: 'interact-1',
+        type: 'interact',
+        title: 'Explore: Rectangles and Triangles',
+        content:
+          'Adjust the dimensions and click "Show Calculations" to see the formulas in action!',
+        component: <PerimeterAreaVisual />,
+      },
+      {
+        id: 'check-1',
+        type: 'check',
+        title: 'Quick Check: Rectangle',
+        content: 'A rectangle has width 4 and height 3. What is its area?',
+        question: {
+          text: 'Area = ?',
+          type: 'multiple-choice',
+          options: ['7', '12', '14', '24'],
+          correctAnswer: '12',
+          explanation:
+            'Correct! Area of rectangle = width × height = 4 × 3 = 12 square units.',
+        },
+      },
+      {
+        id: 'check-2',
+        type: 'check',
+        title: 'Quick Check: Triangle',
+        content: 'A triangle has base 6 and height 4. What is its area?',
+        question: {
+          text: 'Area = ?',
+          type: 'multiple-choice',
+          options: ['10', '12', '20', '24'],
+          correctAnswer: '12',
+          explanation:
+            'Perfect! Area of triangle = ½ × base × height = ½ × 6 × 4 = 12 square units.',
+        },
+      },
+      {
+        id: 'summary-1',
+        type: 'summary',
+        title: 'Area & Perimeter Pro! 📏',
+        content:
+          "You've mastered perimeter and area formulas! Remember: perimeter adds sides, area multiplies dimensions.",
+      },
+    ],
+
+    'pythagorean': [
+      {
+        id: 'intro-1',
+        type: 'intro',
+        title: 'Welcome to the Pythagorean Theorem!',
+        content:
+          "One of the most famous theorems in math! It relates the three sides of a right triangle: a² + b² = c²",
+      },
+      {
+        id: 'interact-1',
+        type: 'interact',
+        title: 'Explore: The Theorem',
+        content:
+          'Adjust the legs (a and b) and watch the hypotenuse (c) change. Click "Show Verification" to see the math!',
+        component: <PythagoreanVisual />,
+      },
+      {
+        id: 'check-1',
+        type: 'check',
+        title: 'Quick Check: Formula',
+        content: 'In a right triangle with legs 3 and 4, what is the hypotenuse?',
+        question: {
+          text: 'c = ?',
+          type: 'multiple-choice',
+          options: ['5', '6', '7', '12'],
+          correctAnswer: '5',
+          explanation:
+            'Correct! Using a² + b² = c²: 3² + 4² = 9 + 16 = 25, so c = √25 = 5. This is the famous 3-4-5 triangle!',
+        },
+      },
+      {
+        id: 'check-2',
+        type: 'check',
+        title: 'Quick Check: Application',
+        content: 'A right triangle has legs 6 and 8. Find c.',
+        question: {
+          text: 'c = ?',
+          type: 'multiple-choice',
+          options: ['10', '12', '14', '48'],
+          correctAnswer: '10',
+          explanation:
+            'Perfect! 6² + 8² = 36 + 64 = 100, so c = √100 = 10. Notice this is double the 3-4-5 triangle!',
+        },
+      },
+      {
+        id: 'summary-1',
+        type: 'summary',
+        title: 'Pythagorean Master! ⚡',
+        content:
+          "You've mastered the Pythagorean Theorem! Use it to find any side of a right triangle when you know the other two.",
+      },
+    ],
+
+    'coordinate-geometry': [
+      {
+        id: 'intro-1',
+        type: 'intro',
+        title: 'Welcome to Coordinate Geometry!',
+        content:
+          "Combine geometry and algebra! You'll learn to find distances and midpoints on the coordinate plane.",
+      },
+      {
+        id: 'interact-1',
+        type: 'interact',
+        title: 'Explore: Distance and Midpoint',
+        content:
+          'Move the points A and B around the plane. Click "Show Calculations" to see the distance and midpoint formulas!',
+        component: <CoordinateGeometryVisual />,
+      },
+      {
+        id: 'check-1',
+        type: 'check',
+        title: 'Quick Check: Distance',
+        content: 'Points A(0, 0) and B(3, 4) are on a plane. What is the distance AB?',
+        question: {
+          text: 'Distance = ?',
+          type: 'multiple-choice',
+          options: ['5', '7', '12', '25'],
+          correctAnswer: '5',
+          explanation:
+            'Correct! Using d = √[(x₂-x₁)² + (y₂-y₁)²] = √[3² + 4²] = √[9 + 16] = √25 = 5. Notice this is the Pythagorean Theorem!',
+        },
+      },
+      {
+        id: 'check-2',
+        type: 'check',
+        title: 'Quick Check: Midpoint',
+        content: 'The midpoint of A(2, 4) and B(6, 8) is:',
+        question: {
+          text: 'Midpoint = ?',
+          type: 'multiple-choice',
+          options: ['(4, 6)', '(8, 12)', '(3, 5)', '(4, 4)'],
+          correctAnswer: '(4, 6)',
+          explanation:
+            'Perfect! Midpoint = ((x₁+x₂)/2, (y₁+y₂)/2) = ((2+6)/2, (4+8)/2) = (4, 6). Average the coordinates!',
+        },
+      },
+      {
+        id: 'summary-1',
+        type: 'summary',
+        title: 'Coordinate Geometry Expert! 📍',
+        content:
+          "You've mastered coordinate geometry! Distance formula and midpoint formula are now in your toolkit.",
       },
     ],
   };
